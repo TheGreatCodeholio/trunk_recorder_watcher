@@ -104,7 +104,7 @@ def check_rtl_dongles(expected_serials=None):
     # Also check for "Failed to open rtlsdr device #X."
     #   e.g. "Failed to open rtlsdr device #0."
     # failed_pattern = re.compile(r'Failed to open rtlsdr device #(\d+)\.')
-    # failed_devices = []
+    failed_devices = []
     # for match in failed_pattern.finditer(output):
     #     failed_idx = match.group(1)
     #     # We can try to figure out which serial belongs to this index:
