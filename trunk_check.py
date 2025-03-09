@@ -193,7 +193,7 @@ def main():
         send_email(subject, body)
         sys.exit(1)
 
-    print(f"Docker contianer {CONTAINER_NAME} is running.")
+    print(f"Docker container {CONTAINER_NAME} is running.")
 
     # Check RTL-SDR dongles
     all_found, missing_serials, failed_devices = check_rtl_dongles(EXPECTED_SERIALS)
