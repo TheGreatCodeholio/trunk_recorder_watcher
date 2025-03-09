@@ -103,25 +103,25 @@ def check_rtl_dongles(expected_serials=None):
 
     # Also check for "Failed to open rtlsdr device #X."
     #   e.g. "Failed to open rtlsdr device #0."
-    failed_pattern = re.compile(r'Failed to open rtlsdr device #(\d+)\.')
-    failed_devices = []
-    for match in failed_pattern.finditer(output):
-        failed_idx = match.group(1)
-        # We can try to figure out which serial belongs to this index:
-        # We'll look for that index line among the discovered devices
-        # by scanning the substring of output or by using a second pattern.
-        # For simplicity, let's do a quick find with a separate regex pass:
-        sn_match = re.search(
-            rf'^\s*{failed_idx}:\s.*SN:\s*(\S+)',
-            output,
-            re.MULTILINE
-        )
-        if sn_match:
-            sn_failed = sn_match.group(1)
-        else:
-            sn_failed = f"unknown-serial-idx-{failed_idx}"
-
-        failed_devices.append((sn_failed, "Failed to open (usb_claim_interface error)"))
+    # failed_pattern = re.compile(r'Failed to open rtlsdr device #(\d+)\.')
+    # failed_devices = []
+    # for match in failed_pattern.finditer(output):
+    #     failed_idx = match.group(1)
+    #     # We can try to figure out which serial belongs to this index:
+    #     # We'll look for that index line among the discovered devices
+    #     # by scanning the substring of output or by using a second pattern.
+    #     # For simplicity, let's do a quick find with a separate regex pass:
+    #     sn_match = re.search(
+    #         rf'^\s*{failed_idx}:\s.*SN:\s*(\S+)',
+    #         output,
+    #         re.MULTILINE
+    #     )
+    #     if sn_match:
+    #         sn_failed = sn_match.group(1)
+    #     else:
+    #         sn_failed = f"unknown-serial-idx-{failed_idx}"
+    #
+    #     failed_devices.append((sn_failed, "Failed to open (usb_claim_interface error)"))
 
     # If no specific expected serials given, just decide 'all_found'
     # based on whether we found at least 1 device and no failures among them.
